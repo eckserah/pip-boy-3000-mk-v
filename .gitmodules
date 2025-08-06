@@ -1,0 +1,3 @@
+[submodule "espruino"]
+	path = espruino
+	url = https://github.com/CodyTolene/Espruino.git

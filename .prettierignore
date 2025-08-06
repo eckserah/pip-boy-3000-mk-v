@@ -1,0 +1,7 @@
+# Ignore everything...
+/*
+
+# Except these files and directories:
+!.github/CODEOWNERS
+!.vscode/
+!README.md
