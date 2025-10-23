@@ -6,28 +6,8 @@ A custom firmware for the [Pip-Boy 3000 Mk V][link-twc-pipboy] by [The Wand
 Company][link-twc] that replaces the stock firmware with new user interfaces and
 additional features.
 
-This projects goal is to more closely resemble the canon Fallout 4 Pip-Boy 3000
-interface as a custom variation of the [UOS][link-uos].
-
-## Hardware overview
-
-Below is a summary of the hardware specifications
-
-- **MCU:** STM32H743IIK (480 MHz, ARM Cortex-M7)
-- **Flash Memory:** 2 MB internal
-- **RAM:** 1 MB internal SRAM
-- **Display:** 320×240 TFT LCD with backlight
-- **Buttons:** PLAY, TUNE UP, TUNE DOWN, TORCH (Power)
-- **Rotary Encoders:** Knob1 and Knob2 (with button press on Knob1)
-- **LEDs:** Red, Green, Blue, and Tuning LED
-- **USB:** USB device (via micro-USB connector)
-- **Audio:** I²S interface with amplifier for speaker output
-- **Storage:** Internal filesystem on flash
-- **Other IO:** Multiple GPIO pins exposed internally
-
-Reference(s):
-
-- [/espruino/boards/PIPBOY.py][link-pipboy.py]
+This projects goal is to more closely resemble a Fallout Pip-Boy 3000 interface 
+as a custom variation of the [UOS][link-uos].
 
 ## Software overview
 
@@ -110,7 +90,7 @@ https://github.com/espruino/Espruino/blob/master/README_Building.md
 
 6.  Flash the firmware to the Pip-Boy 3000 Mk V:
 
-    - Connect the Pip-Boy via **micro-USB**.
+    - Connect the Pip-Boy via **USB-C**.
     - Boot into DFU mode (hold `PLAY` while connecting power).
     - Use `dfu-util` to flash:
 
