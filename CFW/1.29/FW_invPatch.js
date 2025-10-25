@@ -1,4 +1,4 @@
-//1.31
+// 1.29
 function log(a, b)
 {
 	let c;
@@ -54,29 +54,6 @@ function wakeOnLongPress()
 	}
 }
 
-function showLoginScreen()
-{
-	function e(e)
-	{
-		c = 0, e ? (a = (a + e + 10) % 10, d(), Pip.knob1Click(e)) : (d(), Pip.audioStartVar(Pip.audioBuiltin("OK")), b += a.toString(), b.length == 4 && (b == settings.overseerPin || settings.overseerPin == undefined ? (Pip.remove(), bC.setColor(3).setBgColor(0).setFontAlign(0, -1).drawString("Login successful", 199, 170).flip(), Pip.audioStart("UI/ALERT.wav"), setTimeout(a => showMainMenu(), 1e3)) : (bC.setColor(3).setBgColor(0).drawString("Incorrect login", 199, 170), bC.setColor(0).setBgColor(3).clearRect(164, 128, 310, 156), Pip.audioStart("UI/BURST.wav"), b = '', a = 0, setTimeout(a => bC.fillRect(50, 170, 350, 190), 2e3))))
-	}
-	g.clear(), bC.clear(1).setColor(3), drawVaultTecLogo(199, 15, bC, !0), bC.setFontMonofonto28().setFontAlign(0, -1).drawString("Welcome OVERSEER", 199, 80), bC.setColor(0).setBgColor(3).clearRect(88, 128, 156, 156).clearRect(164, 128, 310, 156), bC.setFontMonofonto18().drawString("LOGIN", 122, 133);
-	let a = 0;
-	let b = '';
-	let c = 0;
-	let f = '';
-	let d = function()
-	{
-		let d = 175 + b.length * 12;
-		c == 0 ? (f = a.toString(), bC.drawString(a, d + 4, 133, !0)) : c == 10 && bC.fillRect(d, 133, d + 8, 151), c = (c + 1) % 20, bC.flip()
-	};
-	let h = setInterval(d, 50);
-	Pip.on("knob1", e), Pip.remove = function()
-	{
-		Pip.removeListener("knob1", e), clearInterval(h)
-	}
-}
-
 function playBootAnimation(b)
 {
 	console.log("Playing boot animation");
@@ -92,7 +69,7 @@ function playBootAnimation(b)
 			{
 				Pip.fadeOff().then(a =>
 				{
-					settings.overseer ? showLoginScreen() : showMainMenu(), setTimeout(a => Pip.fadeOn([LCD_BL]), 200)
+					showMainMenu(), setTimeout(a => Pip.fadeOn([LCD_BL]), 200)
 				})
 			}, 2e3)), e()
 		};
@@ -805,7 +782,7 @@ function factoryTestMode()
 		}
 	}), d()
 }
-const VERSION = "1.31";
+const VERSION = "1.29";
 const MIN_FW_VER = "2v25.280";
 var fs = require("fs");
 log(`------- Booting ${process.env.VERSION} - ${VERSION} -------`), log("Reset flags: 0x" + (peek32(1073887348) >> 24).toString(16).padStart(2, "0")), poke32(1073887348, 16777216), clearTimeout(), g.theme.fg == 65535 && g.setTheme(
@@ -893,7 +870,7 @@ let icons = {
 	cog: "\x8CF UP\x02U\xFF(\x10*\xCD\x7F\xE3\xA5\x02\x83o\xDF\xFE\xBE\xA0Pw\xFF\xFF\xFF\xF4\n=\xBC\n\bD)\xF8\x14\x1F\xC5V\xAF\xFF\xFC\xDF\xFF\xF9P(?Z\xFF\xFF\xAA\x05\x1C\"\x18tQH\xC3\xB3/\xE4\xD0\xCB!\x19H\0 ",
 	holotape: "\x8CF UP\x02\xD5\xBF\xF8\0,\xAD|\n\x1F\xD6\xDE\x03\x07\xFDV\x02\x87\xFC\xAA\xEDm\xF7\xFF\xFF\xE6\xABu\xB7K\xC0\xA1\x84B\xFE\x84B\x11\x04\x1D\x0B\xD5\xAA\xD7\x8AD\x17\x8A\x05\x0F\xF4\x11\x1F\xF0\x1D\x10\n\t4O-WT\0\b\xEC\xBDT",
 	alarm: "\x87\xC4\xA0P\b\x18\x1C)p\b\x18_\xFF\x01\0\xDF\x80\xC1\x03\x02\x03\x06~\x03\x06\x02\x02\x07\xF9\x07\x01\x83\xF4\x8F\x80\xC1\xE8_\xC0`\xD0@@\xFF``0~\x12\xF0\x18> \x10?\xFFx\f_\xF4V}\xF1\xA8@/\xF4\b\0",
-	noAlarm: "\x87\xC4\xA0P\b\x18\x1C)p\b\x18_\xFF\x01\0\x8F\x80\xC2\x97\x80\xC1\x90\0\xC1\x80x\'\xFF\xC88\f\x1F\xA4\x7F\xA1\x7F\0\x87A\xFF\xF07\xB00\x18;\0\xE0^/\xF8\f\x1Fx\f\x1A\b\f8\xAC\xFB\xE28\x06\xFF@\x80\0",
+	noAlarm: "\x87\xC4\xA0P\b\x18\x1C)p\b\x18_\xFF\x01\0\x8F\x80\xC2\x97\x80\xC1\x90\0\xC1\x80x'\xFF\xC88\f\x1F\xA4\x7F\xA1\x7F\0\x87A\xFF\xF07\xB00\x18;\0\xE0^/\xF8\f\x1Fx\f\x1A\b\f8\xAC\xFB\xE28\x06\xFF@\x80\0",
 	charging: "\x85D\xA0P\xFF\xFE\x03\xFF\xF0\x8F\xFF`_\xFE\x04\xFF\xE9\x03\xFF@/\xFDZ\xDF\xFC\0\x17?\xFF\xF4\x88\x83\x01\x8F\xF0 _H\x04\xFA\x01\x03\xE0@&\x90\b8\xB4\x1A\x04\0",
 	snooze: "\x11\x12\x02\0\x01V\xAF\0\0\xFF\xFF\xC0\0?\xFF\xF0\0\x05A\xF4\0\0\0\xFC\0\0\0}\x02\x94\0?\0\xFF\xFC\x1F@\x1A\xFF\x0F\xC0\0\x1FG\xD0\0\x0F\x83\xF0\0\x0B\x81\xF4\x05\x0B\xC0\xFF\xFF\xC7\xD0\x7F\xFF\xF3\xD0\x0F\xEAV\xF5\0\0\0\xFF\xFC\0\0\x05\xBF\0\0\0"
 };
@@ -1284,13 +1261,12 @@ let torchButtonHandler = () =>
 	}
 	else showTorch()
 };
-let drawVaultTecLogo = (b, c, a, f) =>
+let drawVaultTecLogo = (b, c, a) =>
 {
 	a || (a = g);
 	let d = "\xBDL\xA0@\xF3 :\xFF\xFE\x90Z\xCC\x1F\xFE\0\x07\xFA\x1Db\x16\x1D\x0B\xFF\xFE\x0E\xB3\xE4.\x83\xBF\x1E\xAEY\x07\0\x05\n^\x1EZ\x02\x1D\x10<\x0F\xD0<\xAE\xFC:$\x02\x7F\xD0\x0E\xA9/\x0B\x02\xD5\x05\xA8\x10\x94b\xB1uP\x005\xB2\x98-P\x8E\xE0\xC0\xBF\xC0\xC0\xAA\x8C\xE4\x03\0\xBC\xC5\x06\f\xB0,\0\x1D\0\f\tt\x1B\xF8\\\x19xx\xE8\x17\xFF*Z\x0B\xC0\xB7\x11j\x16\xF8\xB6\x15\xBF\xF0\xB06\x03\xFC\x1C\x03\xC0O\t\x03\xF8\x01\x83\xF0\x07H\x87\xB1\xC3\x9F\xD0#\xE1\x117\xE0pV\xE1\xEF\xC7\x84\xDF\xC1\xE1A\xFC\x102p0o\xD1\x9C\x12  \x10\\B\x1EI\xF5j\xB5H\x90w\xCB\x10\xBF\xC00|\x10\x7F\xD04\x1F\xF9\xE4\xA5\xB0\x9C\b\xFF\0\x0E\x10x\x13\x183\xF6\xAA_H\x1F\xD0\x88\t\xD4\x1F\xC2\x80\x100 \0\x7F!\xD2\x80\x01\xCF\xCF\xE0\xA0C\x8F\xF4!\xE4PS\x01\x80\re\x03\x0B\f\x02\x8C\bF\r\xF90 \0ky\xD40\0G J`\xA3\x02\x01\x82\'\x06\x1E\x12\x1B\xFF\x90^\x82\n\x1F\xC0S\x04\xBC\x0B\xFC ([\xF0\x98\xE6PA#\xFF`?\x87\xB0!\xE0\xB7\x90# !1\xFF\xF4\xB5\xE8\xF0~\x84~\x81}\x03\x89/\x03\x88\x13\x13\xFCp\x04\x005\xF6\x03\xF4\f\x82\x07\n\xFC\x07\x18\0\x19\x14\x12pc\xC3@\xE2\x80\x04\xDF\xDF\xFC\x83\xC2\x0F\"\xEF`C\xC2 ;\xFE\x8A\f\x87\x888\x05\xB0\xB2\xF5\xB1?H\x10$w\x98P?\xA0\xC0 (/2\x7F\0\xF0mZ\xA0\0\x9A\xB6X.\x10x\0\xE0g\xF4\x02\x10?\xE0\x90\xBA\xAC\x82\x04p\xB0K\0`\x1B\xE5HBPL\x80\x89B\0\x18A\x07W\xF4)\x83\x03\xFE\xADA\xFE\x18\x81\x80\x8F\x02\x1B\x94n\x04\xCC\x1E\x02_\x80\x8F\xFF\xAB\x7F\xFA\0\x18\x19\xFAH0\xF1Jp\xC6\xA0\x8E\x81\x97\x89\x02\x83\x90\xC1\x16\x06\xE0\f\xEA;\xE0#\x80!p`\x16\xF6\xD8\"@\xB7\xA4\xE0\xCF\xA4\xC3\xC9\x01\xA6\x01\x97\x84A\x8A\xD0\0\xE0\xE0\x12\xE1\x87\x81\x1E\x12\xEF\x04\0\f\t\xC0\t\xD4\x108Q\xFF\x84\bX\x1C,\xB6L\x1C\x9C\t\x04.\x84\fJ\x1C-\x02\r\xFC$8\0h\xFA$2`0\xB0\xF0@0\xA1\xE0\xD1\t\x01\x80\x06W\x04\xB7\fJ\x0E\x97^\x16\x05j\"\xF8\x16\xA9Q\xB68\xA2P\xC2\xC0\x82\xC3\xFF\x0E\xCA\0\x0B\x7F\f\x02%\x04,\x14\xFD\x9EH\0\xA68#\0\xAA\x0Bp\xC3\xA9\xAAAZ\x86\xB7\x10\0\xA4=\x90 \x90`\x022\xF0\xC0g\xC0RH6\xC8\xD2\xD5Z\xA0\xB3\x8B\0\x19ov\x1E\x005\xF4\x13\xB1\x16\xC1UZ\xA0@\xD0";
-	if (a.drawImage(dc(d), b - 61, c), f) return;
 	let e = "\xAC\xC4\xE0[\xFE\x04\xBF\xE5\xFF\x80_\xF8_\xE9\x7F\x87\xFF\xFF\xE0@\0`\xF5\xFF\xFF\b\x0E\xFF\x9F\xF8\x87\xFF\x01\xA0\xCB\xFE\x1F\xFE\x7F\xF3~\x0F\x06\x01?\xFF\xFE\xBF\xFF\xC8\x17\xFF\xE7\xFF\x81\xFF\xA7\xFFH_\xF2~\b\x06^\x0F\x06\x01\x0F\xFF\xFF\x83\x80\x85A\x14\x05\xFF\xAF\xFF\x80\xE0\x8CB\xE5\x8F\x81\x80@\xC0`\xEB\xFF\xFC\x10 1\xFF\x86\xFC\x1C\x0F\x03\x7F\xC3\xFF\xCF\xFE:\xFF\xF6\x02\0\x03\x07\x17\xFE\xD0\x7F\xFE\x982\0#\xC0~\x05\x81\x05\0\xA0\x01\x01\x827\x04\xF8\t\x80\x10p?\x8F\xFF\xF4\xB0 (\x14  0\x92\xC0\xCF\xC2\xA0\xCB\xFEa\x10\x7F\xF8\"\xC0`\xD0~?\xFF\xC0D\x13\xA8#`F`\xFF\x8F\xA1\x17\x01,\x05\xF0\f\x82\x80\x04\x06\f-0\x10\xCC \xD8?\x7F\xE1``\xF8!\xD0S\x02.B\xF1\x81\x81\xA5\x96\x05G\x02\x1D\x04\xB0\b\xD8(\x04\x1C\x12\x14\xFF\xC4X\x1BU\xA8,\x05\xFA\xC7\x96\x01\x10\x82N\x0B\xF9\x7F,\n\r\x04\xB0\x13\xCC%\xC83\xFF\xF18\x11P+\x13~\x90\x03\xA04\xF0\xA8<?\xF6\xFC\xB0\x0F\xF5b0@!\xA8\'\x80\x95\0\x80\x84j\x84:\x05b\x17\x80\x14\b\x1C\x15\xE8#pQ@\xB3B_\x84X\f@\f|b\f?\xF0\xE5\x04^\x17\xF6\x1E\xBF\x10\xB0\x1F\xFA\x02\x98\x06\x03\xA8\x8Dd#Z\b\xFF\xE2\x02\x97\x06\xD5@\x0B\x02\x03\x06\xD5\xAA\x80A\xBF\0";
-	a.drawImage(dc(e), b - 45, c + 60)
+	a.drawImage(dc(d), b - 61, c), a.drawImage(dc(e), b - 45, c + 60)
 };
 let drawVaultNumLogo = (b, c, d, a) =>
 {
@@ -1311,52 +1287,25 @@ let drawText = (c, d, e, a) =>
 };
 let showVaultAssignment = () =>
 {
-	if (settings.overseer)
+	let a = 32 + Math.floor(Math.random() * 2);
+	let c = settings.userName ? settings.userName.toUpperCase() : "CONSTITUENT";
+	var b = 0;
+	g.clearRect(40, 40, 440, 58);
+	let d = () =>
 	{
-		let a = setTimeout(function()
-		{
-			a = undefined, Pip.videoStart(`MISC/REPOP1.avi`,
-			{
-				x: 36,
-				y: 40,
-				repeat: !1
-			}), Pip.on("videoStopped", function()
-			{
-				Pip.removeAllListeners("videoStopped"), Pip.videoStart(`MISC/REPOP2.avi`,
-				{
-					x: 36,
-					y: 40,
-					repeat: !0
-				})
-			})
-		}, 100);
-		Pip.removeSubmenu = function()
-		{
-			a && clearTimeout(a), Pip.removeAllListeners("videoStopped"), Pip.videoStop()
-		}
-	}
-	else
+		var d;
+		bC.clear(1).setFontMonofonto23().setFontAlign(0, 0), b == 0 ? (d = a == 32 ? "WE BID YOU FAREWELL!\nYOU'RE MOVING TO" : "CONGRATULATIONS!\nYOU'RE STAYING IN", drawText(d, 200, 15, bC), drawVaultNumLogo(200, 85, a, bC)) : (a == 32 ? d = "CONGRATULATIONS,\n" + c + "!\n\nYOU'RE ONE OF THE CHOSEN\nPIONEERS WHO WILL\nREPOPULATE VAULT 32!" : d = "CONGRATULATIONS,\n" + c + "!\n\nYOU REMAIN A\nTRUE AND TRUSTED\nRESIDENT OF VAULT 33!", drawText(d, 200, 15, bC)), b = (b + 1) % 2
+	};
+	d();
+	let e = setInterval(function()
 	{
-		let b = 32 + Math.floor(Math.random() * 2);
-		let c = settings.userName ? settings.userName.toUpperCase() : "CONSTITUENT";
-		var a = 0;
-		g.clearRect(40, 40, 440, 58);
-		let d = () =>
-		{
-			var d;
-			bC.clear(1).setFontMonofonto23().setFontAlign(0, 0), a == 0 ? (d = b == 32 ? "WE BID YOU FAREWELL!\nYOU'RE MOVING TO" : "CONGRATULATIONS!\nYOU'RE STAYING IN", drawText(d, 200, 15, bC), drawVaultNumLogo(200, 85, b, bC)) : (b == 32 ? d = "CONGRATULATIONS,\n" + c + "!\n\nYOU'RE ONE OF THE CHOSEN\nPIONEERS WHO WILL\nREPOPULATE VAULT 32!" : d = "CONGRATULATIONS,\n" + c + "!\n\nYOU REMAIN A\nTRUE AND TRUSTED\nRESIDENT OF VAULT 33!", drawText(d, 200, 15, bC)), a = (a + 1) % 2
-		};
-		d();
-		let e = setInterval(function()
-		{
-			bC.flip()
-		}, 50);
-		let f = setInterval(d, 3e3);
-		Pip.removeSubmenu = function()
-		{
-			clearTimeout(f), clearInterval(e)
-		}, setTimeout(a => Pip.audioStart("UI/ALERT.wav"), 100)
-	}
+		bC.flip()
+	}, 50);
+	let f = setInterval(d, 3e3);
+	Pip.removeSubmenu = function()
+	{
+		clearTimeout(f), clearInterval(e)
+	}, setTimeout(a => Pip.audioStart("UI/ALERT.wav"), 100)
 };
 Pip.clockVertical = !1;
 let submenuClock = () =>
@@ -1970,6 +1919,507 @@ let showAlarm = o =>
 	{
 		repeat: !0
 	})), g.clear(), bH.flip(), bF.flip(), Pip.brightness = 20, Pip.fadeOn()
+};
+let submenuItems = () =>
+{
+	const LIST_START_Y = 10,
+    LIST_LINE_HEIGHT = 22,
+    STATS_BOX_X = 220,
+    STATS_BOX_BOTTOM_Y = 205;
+  const STATS_BOX_WIDTH = 170,
+    STATS_PADDING = 8,
+    STAT_LINE_HEIGHT = 20,
+    TEXT_COLOR = 3,
+    BRIGHT_BG_COLOR = 1,
+    DITHER_COLOR = 1;
+
+  // --- State ---
+  let inventory = [],
+    fileList = [],
+    pageCounts = [],
+    totalItems = 0,
+    currentPageIndex = -1;
+  let selectedItemGlobalIndex = 0,
+    lastSelectedItemGlobalIndex = -1;
+  let equippedGear = {
+    weapon: null,
+    hat: null,
+    eyewear: null,
+    mask: null,
+    clothing: null,
+    chest: null,
+    leftArm: null,
+    rightArm: null,
+    leftLeg: null,
+    rightLeg: null,
+    accessory: null,
+  };
+  let currentItemImage = null,
+    isItemSoundPlaying = false;
+  let original_removeSubmenu = null;
+  let ICNS = null;
+
+  let onKnob,
+    loadItemImage,
+    drawStatGroup,
+    renderItemStats,
+    renderFull,
+    drawDitheredRect,
+    loadMetadata,
+    loadPage,
+    getPageAndLocalIndex,
+    drawItem;
+
+  function loadItemImage(item) {
+    currentItemImage = null;
+      if (item && item.image) {
+        try {
+          const fileContent = fs.readFileSync('DATA/' + item.image);
+          const imageObject = new Function('return (' + fileContent + ')')();
+          imageObject.buffer = E.toArrayBuffer(imageObject.buffer);
+          currentItemImage = imageObject;
+        } catch (e) {
+          /* Silently fail on image load error */
+        }
+      }
+  }
+
+  function drawStatGroup(stats, label, yOffset, statsBoxY) {
+    if (!stats || stats.length === 0) return yOffset;
+      let maxValBoxWidth = 0;
+      stats.forEach(function (stat) {
+        const icon = ICNS[stat.type];
+        const statValueWidth = bC.stringWidth(stat.value);
+        let iconWidth = 0;
+        if (icon) {
+          const iconDimensions = g.imageMetrics(icon);
+          const targetHeight =
+            stat.type === 'attack' && label === 'Damage' ? 15 : 14;
+          const scale = targetHeight / iconDimensions.height;
+          iconWidth = iconDimensions.width * scale;
+        }
+        maxValBoxWidth = Math.max(
+          maxValBoxWidth,
+          statValueWidth + iconWidth + 20,
+        );
+      });
+      const valueStartPosition = STATS_BOX_X + STATS_BOX_WIDTH - maxValBoxWidth;
+      const totalGroupHeight = stats.length * STAT_LINE_HEIGHT;
+      const firstLineY = statsBoxY + STATS_PADDING + yOffset;
+      bC.setColor(BRIGHT_BG_COLOR);
+      bC.fillRect(
+        STATS_BOX_X + 4,
+        firstLineY - 2,
+        valueStartPosition - 4,
+        firstLineY + totalGroupHeight - 4,
+      );
+      bC.setBgColor(BRIGHT_BG_COLOR);
+      bC.setColor(TEXT_COLOR);
+
+      bC.drawString(label, STATS_BOX_X + STATS_PADDING, firstLineY);
+
+      stats.forEach(function (stat) {
+        const lineY = statsBoxY + STATS_PADDING + yOffset;
+        const icon = ICNS[stat.type];
+        bC.setColor(BRIGHT_BG_COLOR);
+        bC.fillRect(
+          valueStartPosition,
+          lineY - 2,
+          STATS_BOX_X + STATS_BOX_WIDTH - 4,
+          lineY + STAT_LINE_HEIGHT - 4,
+        );
+        bC.setBgColor(BRIGHT_BG_COLOR);
+        bC.setColor(TEXT_COLOR);
+        if (icon) {
+          const iconDimensions = g.imageMetrics(icon);
+          const targetHeight =
+            stat.type === 'attack' && label === 'Damage' ? 15 : 14;
+          const scale = targetHeight / iconDimensions.height;
+          const iconY =
+            lineY + (STAT_LINE_HEIGHT - 4 - iconDimensions.height * scale) / 2;
+          bC.drawImage(icon, valueStartPosition + 2, iconY, {
+            scale: scale,
+          });
+        }
+        bC.setFontAlign(1, -1);
+        bC.drawString(
+          stat.value,
+          STATS_BOX_X + STATS_BOX_WIDTH - STATS_PADDING,
+          lineY,
+        );
+        bC.setFontAlign(-1, -1);
+        yOffset += STAT_LINE_HEIGHT;
+      });
+      return yOffset;
+  }
+
+  function renderItemStats(item) {
+    bC.setFontMonofonto16();
+      if (!item) return;
+      const statCount =
+        (item.damages ? item.damages.length : 0) +
+        (item.defenses ? item.defenses.length : 0) +
+        (item.stats ? Object.keys(item.stats).length : 0);
+      if (statCount === 0) return;
+      const statsBoxHeight =
+        statCount * STAT_LINE_HEIGHT + STATS_PADDING * 2 - 2;
+      const statsBoxY = STATS_BOX_BOTTOM_Y - statsBoxHeight;
+      let yOffset = 0;
+      yOffset = drawStatGroup(item.damages, 'Damage', yOffset, statsBoxY);
+      yOffset = drawStatGroup(item.defenses, 'DMG Resist', yOffset, statsBoxY);
+      if (item.stats) {
+        for (var statName in item.stats) {
+          const lineY = statsBoxY + STATS_PADDING + yOffset;
+          const statEntry = item.stats[statName];
+          const isComplexStat =
+            typeof statEntry === 'object' && statEntry !== null;
+          const statValue = isComplexStat ? statEntry.value : statEntry;
+          const hasTimeIndicator = isComplexStat && statEntry.isTimed;
+          const isImportantStat = statName === item.ammoType;
+          if (isImportantStat) {
+            bC.setColor(BRIGHT_BG_COLOR);
+            bC.fillRect(
+              STATS_BOX_X + 4,
+              lineY,
+              STATS_BOX_X + STATS_BOX_WIDTH - 4,
+              lineY + STAT_LINE_HEIGHT - 4,
+            );
+            bC.setBgColor(BRIGHT_BG_COLOR);
+          } else {
+            drawDitheredRect(
+              STATS_BOX_X + 4,
+              lineY,
+              STATS_BOX_WIDTH - 8,
+              STAT_LINE_HEIGHT - 2,
+            );
+            bC.setBgColor(0);
+          }
+          bC.setColor(TEXT_COLOR);
+          const valueX = STATS_BOX_X + STATS_BOX_WIDTH - STATS_PADDING;
+          if (isImportantStat) {
+            let textX = STATS_BOX_X + STATS_PADDING;
+            if (ICNS.ammo) {
+              const iconDimensions = g.imageMetrics(ICNS.ammo);
+              const scale = 14 / iconDimensions.height;
+              const iconY =
+                lineY +
+                (STAT_LINE_HEIGHT - 4 - iconDimensions.height * scale) / 2;
+              bC.drawImage(ICNS.ammo, textX, iconY, {
+                scale: scale,
+              });
+            }
+            textX += 16;
+            bC.drawString(statName, textX, lineY);
+          } else {
+            bC.drawString(statName, STATS_BOX_X + STATS_PADDING, lineY);
+          }
+          bC.setFontAlign(1, -1);
+          bC.drawString(statValue, valueX, lineY);
+          if (hasTimeIndicator) {
+            const iconDimensions = g.imageMetrics(ICNS.time);
+            const scale = 14 / iconDimensions.height;
+            const iconY =
+              lineY -
+              1 +
+              (STAT_LINE_HEIGHT - 4 - iconDimensions.height * scale) / 2;
+            const iconX =
+              valueX -
+              bC.stringWidth(statValue) -
+              iconDimensions.width * scale -
+              7;
+            bC.drawImage(ICNS.time, iconX, iconY, {
+              scale: scale,
+            });
+          }
+          bC.setFontAlign(-1, -1);
+          yOffset += STAT_LINE_HEIGHT;
+        }
+      }
+  }
+
+  function onKnob(dir) {
+    if (isItemSoundPlaying) {
+        if (Pip.audioIsPlaying()) {
+          return;
+        } else {
+          isItemSoundPlaying = false;
+        }
+      }
+
+      const currentPos = getPageAndLocalIndex(selectedItemGlobalIndex);
+      const item = totalItems > 0 ? inventory[currentPos.local] : null;
+
+      if (dir === 0) {
+        if (!item) return;
+        if (item.type === 'weapon' || item.type === 'apparel') {
+          isItemSoundPlaying = true;
+          let slots =
+            Object.prototype.toString.call(item.equipSlots) === '[object Array]'
+              ? item.equipSlots
+              : [item.equipSlots];
+
+          if (slots.length > 0 && Array.isArray(slots[0])) {
+            slots = slots[0];
+          }
+
+          let isEquipped = equippedGear[slots[0]] === item.name;
+          let soundFile = null;
+          let sounds = null;
+
+          if (item.type === 'weapon') {
+            sounds = isEquipped
+              ? ['EquipDown_01.wav', 'EquipDown_02.wav', 'EquipDown_03.wav']
+              : ['EquipUp_02.wav', 'EquipUp_03.wav'];
+          } else {
+            // apparel
+            sounds = isEquipped
+              ? ['EquipDown_01.wav', 'EquipDown_02.wav', 'EquipDown_03.wav']
+              : ['EquipUp_01.wav'];
+          }
+          soundFile = sounds[Math.floor(Math.random() * sounds.length)];
+
+          if (isEquipped) {
+            slots.forEach(function (s) {
+              equippedGear[s] = null;
+            });
+          } else {
+            let itemsToUnequip = [];
+            slots.forEach(function (s) {
+              let itemName = equippedGear[s];
+              if (itemName && itemsToUnequip.indexOf(itemName) === -1) {
+                itemsToUnequip.push(itemName);
+              }
+            });
+
+            if (itemsToUnequip.length > 0) {
+              for (var slot in equippedGear) {
+                if (itemsToUnequip.indexOf(equippedGear[slot]) !== -1) {
+                  equippedGear[slot] = null;
+                }
+              }
+            }
+
+            slots.forEach(function (s) {
+              equippedGear[s] = item.name;
+            });
+          }
+
+          if (soundFile) Pip.audioStart('DATA/' + soundFile);
+          renderFull();
+        } else if (item.sounds && item.sounds.length > 0) {
+          isItemSoundPlaying = true;
+          Pip.audioStart(
+            'DATA/' +
+              item.sounds[Math.floor(Math.random() * item.sounds.length)],
+          );
+        }
+        return;
+      }
+
+      if (totalItems <= 1) return;
+
+      Pip.knob1Click(dir);
+
+      lastSelectedItemGlobalIndex = selectedItemGlobalIndex;
+      selectedItemGlobalIndex -= dir;
+      selectedItemGlobalIndex =
+        ((selectedItemGlobalIndex % totalItems) + totalItems) % totalItems;
+
+      if (selectedItemGlobalIndex === lastSelectedItemGlobalIndex) return;
+
+      let oldPos = getPageAndLocalIndex(lastSelectedItemGlobalIndex);
+      let newPos = getPageAndLocalIndex(selectedItemGlobalIndex);
+
+      let pageChanged = newPos.page !== oldPos.page;
+
+      if (pageChanged) {
+        loadPage(newPos.page);
+        renderFull();
+      } else {
+        loadItemImage(inventory[newPos.local]);
+        bC.setBgColor(0);
+        bC.clearRect(STATS_BOX_X, 0, bC.getWidth(), bC.getHeight());
+        if (currentItemImage)
+          bC.drawImage(currentItemImage, STATS_BOX_X + 20, 20);
+        drawItem(oldPos.local, newPos.local);
+        drawItem(newPos.local, newPos.local);
+        renderItemStats(inventory[newPos.local]);
+        bC.flip();
+      }
+  }
+
+  function renderFull() {
+    if (totalItems === 0) {
+        bC.clear(1)
+          .setFontMonofonto18()
+          .setColor(3)
+          .drawString('Inventory empty.', 25, LIST_START_Y + 3)
+          .flip();
+        return;
+      }
+      const currentPos = getPageAndLocalIndex(selectedItemGlobalIndex);
+      loadItemImage(inventory[currentPos.local]);
+      bC.clear(1);
+      if (currentItemImage) {
+        bC.drawImage(currentItemImage, STATS_BOX_X + 20, 20);
+      }
+      for (var i = 0; i < inventory.length; i++) {
+        drawItem(i, currentPos.local);
+      }
+      renderItemStats(inventory[currentPos.local]);
+      bC.flip();
+  }
+
+  function drawDitheredRect(x, y, w, h) {
+    bC.setColor(DITHER_COLOR);
+      for (var j = y; j < y + h; j += 2) {
+        bC.fillRect(x, j, x + w, j);
+      }
+  }
+
+  function loadMetadata() {
+    try {
+        const meta = JSON.parse(fs.readFileSync('DATA/items_meta.json'));
+        pageCounts = meta.pageCounts;
+        totalItems = 0;
+        for (var i = 0; i < pageCounts.length; i++) {
+          totalItems += pageCounts[i];
+        }
+        fileList = [];
+        for (var j = 0; j < pageCounts.length; j++) {
+          fileList.push('items_' + j + '.json');
+        }
+      } catch (e) {
+        totalItems = 0;
+      }
+  }
+
+  function loadPage(pIdx) {
+    if (pIdx < 0 || pIdx >= fileList.length || currentPageIndex === pIdx)
+        return false;
+      try {
+        inventory = JSON.parse(fs.readFileSync('DATA/' + fileList[pIdx]));
+        currentPageIndex = pIdx;
+        return true;
+      } catch (e) {
+        inventory = [];
+        return false;
+      }
+  }
+
+  function getPageAndLocalIndex(gIdx) {
+    if (totalItems === 0)
+        return {
+          page: 0,
+          local: 0,
+        };
+      gIdx = ((gIdx % totalItems) + totalItems) % totalItems;
+      let itemsScanned = 0;
+      for (var i = 0; i < pageCounts.length; i++) {
+        if (gIdx < itemsScanned + pageCounts[i])
+          return {
+            page: i,
+            local: gIdx - itemsScanned,
+          };
+        itemsScanned += pageCounts[i];
+      }
+      return {
+        page: 0,
+        local: 0,
+      };
+  }
+
+  function drawItem(localIndex, selectedLocalIndex) {
+    const item = inventory[localIndex];
+      const y = LIST_START_Y + localIndex * LIST_LINE_HEIGHT;
+      const xStart = 23;
+      const maxWidth = STATS_BOX_X - 15 - xStart;
+
+      bC.setBgColor(localIndex === selectedLocalIndex ? 3 : 0);
+      bC.setColor(localIndex === selectedLocalIndex ? 0 : 3);
+      bC.clearRect(10, y, STATS_BOX_X - 10, y + LIST_LINE_HEIGHT - 1);
+      bC.setFontMonofonto16();
+
+      if (Object.values(equippedGear).includes(item.name)) {
+        bC.fillRect(12, y + 8, 18, y + 14);
+      }
+
+      const quantityStr = ' (' + item.quantity + ')';
+      const quantityWidth = bC.stringWidth(quantityStr);
+      let nameStr = item.name;
+      const availableNameWidth = maxWidth - quantityWidth;
+
+      if (bC.stringWidth(nameStr) > availableNameWidth) {
+        let truncatedName = '';
+        for (let i = 0; i < nameStr.length; i++) {
+          if (
+            bC.stringWidth(truncatedName + nameStr[i] + '...') >
+            availableNameWidth
+          ) {
+            break;
+          }
+          truncatedName += nameStr[i];
+        }
+        nameStr = truncatedName + '...';
+      }
+
+      bC.drawString(nameStr + quantityStr, xStart, y + 3);
+  }
+
+  // --- Main Logic ---
+
+  function start() {
+    try {
+      const iconFile = fs.readFileSync('DATA/ICONS.json');
+      const iconStrings = JSON.parse(iconFile);
+      ICNS = {};
+      for (var key in iconStrings) {
+        ICNS[key] = atob(iconStrings[key]);
+      }
+    } catch (e) {
+      ICNS = {};
+    }
+
+    original_removeSubmenu = Pip.removeSubmenu;
+    loadMetadata();
+    if (totalItems > 0) {
+      loadPage(0);
+      selectedItemGlobalIndex = 0;
+    }
+    renderFull();
+    Pip.on('knob1', onKnob);
+    Pip.removeSubmenu = stopCallback;
+  }
+
+  function stopCallback() {
+    stop();
+  }
+
+  function stop() {
+    Pip.removeListener('knob1', onKnob);
+
+    if (original_removeSubmenu) {
+      Pip.removeSubmenu = original_removeSubmenu;
+      original_removeSubmenu = null;
+    }
+
+    inventory = [];
+    fileList = [];
+    pageCounts = [];
+    currentItemImage = null;
+    isItemSoundPlaying = false;
+    totalItems = 0;
+    currentPageIndex = -1;
+    selectedItemGlobalIndex = 0;
+    lastSelectedItemGlobalIndex = -1;
+    //equippedGear = null;
+    ICNS = null;
+
+    process.memory();
+
+    if (g.reset) g.reset();
+  }
+  start();
 };
 let submenuInvAttach = () =>
 {
@@ -2982,7 +3432,7 @@ E.showMenu = function(g)
 	{
 		Pip.audioStart("BOOT/BOOT_DONE.wav"), Pip.sleeping = !1, showMainMenu(), Pip.fadeOn()
 	})
-}, 2e3)) : (log("*** NO BOOT DIRECTORY ***"), g.drawString("NO BOOT DIRECTORY", 240, 179, 1), Pip.sleeping = !1))) : (Pip.fadeOn(), setWatch(Pip.off, BTN_POWER,
+}, 2e3)) : (log("*** NO BOOT DIRECTORY ***"), g.drawString("NO BOOT DIRECTORY", 240, 174, 1), Pip.sleeping = !1))) : (Pip.fadeOn(), setWatch(Pip.off, BTN_POWER,
 {
 	edge: "falling"
 })))
