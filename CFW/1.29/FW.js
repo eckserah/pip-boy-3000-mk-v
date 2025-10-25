@@ -1,3 +1,4 @@
+// 1.29
 function log(a, b) {
     let c;
     b || (b = "exceptions.log");
